@@ -1,0 +1,47 @@
+PREFIX ex: <http://ex.org/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT {
+    ?IRI a ex:Video ;
+    ex:country ?country_bind ;
+    ex:trending_date ?trending_date_bind ;
+    ex:title ?title_bind ;
+    ex:channel_title ?channel_title_bind ;
+    ex:publish_time ?publish_time_bind ;
+    ex:views ?views_bind ;
+    ex:likes ?likes_bind ;
+    ex:dislikes ?dislikes_bind ;
+    ex:comment_count ?comment_count_bind ;
+    ex:comments_disabled ?comments_disabled_bind ;
+    ex:ratings_disabled ?ratings_disabled_bind ;
+    ex:video_error_or_removed ?video_error_or_removed_bind ;
+    ex:category ?category_bind ;
+    ex:publish_timestamp ?publish_timestamp_bind ;
+    ex:trending_timestamp ?trending_timestamp_bind ;
+    ex:video_id ?video_id_bind .
+
+    ?country_bind a ex:Country .
+    ?category_bind a ex:Category .
+    ?channel_title_bind a ex:Channel.
+}
+FROM <file:videos.csv>
+WHERE {
+    BIND (IRI(CONCAT("http://ex.org/video/", ?video_id)) AS ?IRI)
+    BIND (IRI(CONCAT("http://ex.org/country/", ?country)) AS ?country_bind)
+    BIND (IRI(CONCAT("http://ex.org/category/", ?category)) AS ?category_bind)
+    BIND (IRI(CONCAT("http://ex.org/channel/", ?channel_title)) AS ?channel_title_bind)
+    BIND (xsd:date(?trending_date) AS ?trending_date_bind)
+    BIND (xsd:string(?title) AS ?title_bind)
+    BIND (xsd:string(?video_id) AS ?video_id_bind)
+    BIND (xsd:dateTime(?publish_time) AS ?publish_time_bind)
+    BIND (xsd:integer(?views) AS ?views_bind)
+    BIND (xsd:integer(?likes) AS ?likes_bind)
+    BIND (xsd:integer(?dislikes) AS ?dislikes_bind)
+    BIND (xsd:integer(?comment_count) AS ?comment_count_bind)
+    BIND (xsd:boolean(?comments_disabled) AS ?comments_disabled_bind)
+    BIND (xsd:boolean(?ratings_disabled) AS ?ratings_disabled_bind)
+    BIND (xsd:boolean(?video_error_or_removed) AS ?video_error_or_removed_bind)
+    BIND (xsd:dateTime(?publish_timestamp) AS ?publish_timestamp_bind)
+    BIND (xsd:dateTime(?trending_timestamp) AS ?trending_timestamp_bind)
+    
+}

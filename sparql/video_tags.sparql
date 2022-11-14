@@ -1,0 +1,12 @@
+PREFIX ex: <http://ex.org/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT {
+  ?video ex:hasTag ?tag .
+} 
+FROM <file:video_tags.csv> 
+WHERE {
+    BIND (IRI(CONCAT('http://ex.org/video/', ?video_id)) AS ?video)
+    BIND (IRI(CONCAT('http://ex.org/tag/', ?tag_name)) AS ?tag)
+
+}
