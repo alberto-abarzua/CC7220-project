@@ -2,7 +2,8 @@ PREFIX ex: <http://ex.org/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 CONSTRUCT {
-  ?video ex:hasTag ?tag .
+    ?video ex:hasTag ?tag .
+    ?tag a ex:Tag.
 } 
 FROM <file:video_tags.csv> 
 WHERE {
