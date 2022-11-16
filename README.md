@@ -51,7 +51,7 @@ SELECT ?channel (MIN(?views) as ?min_video) (MAX(?views) as ?max_video) WHERE{
   ?video ex:channel_title ?channel .
   ?video ex:views ?views .
   ?video a ex:Video .
-} GROUP BY ?channel 
+} GROUP BY ?channel HAVING(COUNT(*)>10)
 ORDER BY DESC(?min_video) 
 LIMIT 10
 ```
