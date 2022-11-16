@@ -1,5 +1,15 @@
 # CC7220-project
 
+## Data used
+
+- [Trending YouTube Video Statistics](https://www.kaggle.com/datasets/datasnaek/youtube-new). The data should be placed in a folder named `raw_dataset`
+
+## Project structure
+
+- `pre_processing.py`: Notebook to process the raw dataset downloaded from Kaggle. Running this script creates a directory named `clean_dataset`, which contains the cleaned `.csv` files. The script takes two arguments: `frac` and `threshold`. `frac` represents what fraction of the dataset to take from the raw data, and `thresh` will remove videos with less than `thresh` tags.
+
+- `create_rdf.py`: Reads the cleaned data and uses Tarql to convert the `.csv` files into RDF triples. The `CONSTRUCT` queries in SPARQL are placed in the `sparql` folder. Running this script will create `.ttl` files. The script will place the `.ttl` files into the `rdf_dataset` directory. The `.ttl` files can now be loaded into a SPARQL endpoint to run queries.
+
 ## Prefixes
 
 ```sql
